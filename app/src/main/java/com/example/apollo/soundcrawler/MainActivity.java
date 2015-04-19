@@ -2,8 +2,14 @@ package com.example.apollo.soundcrawler;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +17,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageButton searchTrigger = (ImageButton)findViewById(R.id.searchButton);
+        searchTrigger.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        TextView searchField = (TextView)findViewById(R.id.search);
+                        Log.v("Test", searchField.getText().toString());
+                    }
+                }
+        );
     }
 
     @Override
