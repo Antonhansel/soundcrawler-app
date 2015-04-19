@@ -13,6 +13,6 @@ public interface RestActivity {
     @FormUrlEncoded
     @POST("/crawlsoundcloud")
     // void crawlUrl(@Body String url, Callback cb);
-    void crawlUrl(@Field("url") String url, Callback cb);
+    String crawlUrl(@Field("url") String url, Callback cb);
 
 }

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.os.AsyncTask;
+import retrofit.RestAdapter;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -18,6 +20,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ImageButton searchTrigger = (ImageButton)findViewById(R.id.searchButton);
+        // Fucking listener for the fucking click search icon
         searchTrigger.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
@@ -26,6 +29,25 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }
         );
+        // Fucking REST client
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint("http://soundcrawler.io")
+                .build();
+        RestActivity restActivity = restAdapter.create(RestActivity.class);
+    }
+
+    private class crawlUrl extends AsyncTask<String, Void, String>{
+        @Override
+        protected String doInBackground(String... params) {
+            try{
+                String response = restActivity.crawlUrl("http://soundcloud.com/antoninhansel");
+                Log.v("response", response);
+            }catch(Exception e){
+                e.printStackTrace();
+                return "failure";
+            }
+            return "success";
+        }
     }
 
     @Override
