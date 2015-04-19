@@ -1,7 +1,5 @@
 package com.example.apollo.soundcrawler;
 
-import javax.security.auth.callback.Callback;
-
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.POST;
@@ -13,6 +11,6 @@ public interface RestActivity {
     @FormUrlEncoded
     @POST("/crawlsoundcloud")
     // void crawlUrl(@Body String url, Callback cb);
-    String crawlUrl(@Field("url") String url, Callback cb);
+    String crawlUrl(@Field("url") String url);
 
 }

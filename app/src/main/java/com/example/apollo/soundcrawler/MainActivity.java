@@ -26,20 +26,22 @@ public class MainActivity extends ActionBarActivity {
                     public void onClick(View v) {
                         TextView searchField = (TextView)findViewById(R.id.search);
                         Log.v("Test", searchField.getText().toString());
+                        new crawlUrl().execute();
                     }
                 }
         );
-        // Fucking REST client
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://soundcrawler.io")
-                .build();
-        RestActivity restActivity = restAdapter.create(RestActivity.class);
     }
 
     private class crawlUrl extends AsyncTask<String, Void, String>{
         @Override
         protected String doInBackground(String... params) {
             try{
+                // Fucking REST client
+                RestAdapter restAdapter = new RestAdapter.Builder()
+                        .setEndpoint("http://soundcrawler.io")
+                        .build();
+                RestActivity restActivity = restAdapter.create(RestActivity.class);
+
                 String response = restActivity.crawlUrl("http://soundcloud.com/antoninhansel");
                 Log.v("response", response);
             }catch(Exception e){
